@@ -7,6 +7,8 @@ import { Component } from "@angular/core";
       <h1>{{pageTitle}}</h1>
       <div>The First Component</div>
     </div>
+    <br />
+    <pm-products></pm-products>
     `
 })
 export class AppComponent {
