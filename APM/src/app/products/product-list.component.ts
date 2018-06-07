@@ -27,13 +27,12 @@ export class ProductListComponent implements OnInit {
     products: IProduct[];
 
     constructor(private _productService: ProductService) {
-        this.products = this._productService.getProducts();
-        this.filteredProducts = this.products;
-        this.listFilter = 'cart';
+        // this.listFilter = 'cart';
     }
 
     ngOnInit(): void {
-        console.log('hello world');
+        this.products = this._productService.getProducts();
+        this.filteredProducts = this.products;
     }
 
     performFilter(filterString: string): IProduct[] {
