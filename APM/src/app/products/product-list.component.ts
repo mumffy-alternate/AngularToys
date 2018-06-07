@@ -94,7 +94,8 @@ export class ProductListComponent implements OnInit {
         this.showImage = !this.showImage;
     }
 
-    onStarNotify(): void {
-        alert('Notified by StarComponent');
+    onRatingClicked(message: string): void {
+        console.log(`Notified by StarComponent ${message}`);
+        this.pageTitle = `Product List! (${message})`;
     }
 }

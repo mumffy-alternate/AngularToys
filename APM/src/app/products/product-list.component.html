@@ -42,7 +42,7 @@
                         <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
                         <td>
                             <pm-stars [rating]='product.starRating'
-                                (notify)='onStarNotify();'>
+                                (ratingClicked)='onRatingClicked($event);'>
                             </pm-stars>
                         </td>
                     </tr>
