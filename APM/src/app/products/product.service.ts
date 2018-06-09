@@ -1,9 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
 
 import { IProduct } from './product';
 
 @Injectable()
 export class ProductService {
+    private _productUrl: string = './api/products/products.json';
+
+    constructor(private _http: HttpClient) {
+    }
+
     getProducts(): IProduct[] {
         return [
             {
@@ -57,5 +68,16 @@ export class ProductService {
                 'imageUrl': 'http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
             }
         ];
+    }
+
+    getProductsOverHttp(): Observable<IProduct[]> {
+        return this._http.get<IProduct[]>(this._productUrl)
+                   .do(data => console.log('All: ' + JSON.stringify(data)))
+                   .catch(this.handleError);
+    }
+
+    private handleError(err: HttpErrorResponse): any {
+        console.error(err.message);
+        return Observable.throw(err.message);
     }
 }
